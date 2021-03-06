@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='custom.css') }}">
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <!-- FAVICON
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename ='img/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename ='img/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename ='img/favicon/favicon-16x16.png') }}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W5LG8D00T6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-W5LG8D00T6');
+    </script>
+</head>
+
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container is-max-desktop">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="{{ '/' }}">
+          <p class="has-text-weight-bold">Nörda</p>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">Products</a>
+          <a class="navbar-item">Pricing</a>
+          <a class="navbar-item">Support</a>
+        </div>
+        
+
+        <div class="navbar-end">
+          {% if current_user.is_authenticated %}
+          <a class="navbar-item" href="{{ url_for('main.account', id=current_user.id) }}">Account</a>
+          <a class="navbar-item" href="{{ url_for('auth.logout') }}">Logout</a>
+          {% endif %}
+          <div class="navbar-item">
+            {% if not current_user.is_authenticated %}
+            <div class="buttons">
+              <a class="button is-info" href="{{ url_for('auth.signup') }}">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light" href="{{ url_for('auth.login') }}">
+                Log in
+              </a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+  </nav>
+	
+	{% block content %}
+	
+	{% endblock %}
+
+  <footer class="footer mt-6">
+    <div class="content has-text-centered">
+      <p class="is-size-6">
+        © Copyright 2021 <strong>Norda</strong> / Contact at <a href="mailto:martifont92@gmail.com">martifont92@gmail.com</a>
+      </p>
+      <p class="is-size-7 ">
+        <a href="#" alt="Privacy Policy">Privacy Policy</a> / <a href="#" alt="Terms of Service">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+
+	<script src="{{ url_for('static', filename='bulma.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Norda{% endblock %}
+
+{% block content %}
+	{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+			{% for category, message in messages %}
+				<div class="notification is-light {{ category }}">
+					<button class="delete"></button>
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<div class="container is-max-desktop">
+		<div class="box mt-4">
+			<legend class="is-size-4">Account Details</legend>
+			<hr>
+			<form action="/account" method="POST">
+				<div class="field mt-4">
+		            <div class="control">
+		            	<h5 class="is-size-5 has-text-weight-bold">Name</h5>
+		            	<input class="input is-normal" type="name" autocomplete="name" name="name" value="{{ name }}" />
+		            </div>
+		        </div>
+		        <div class="field">
+		            <div class="control">
+		            	<h5 class="is-size-5 has-text-weight-bold">Userame</h5>
+		            	<input class="input is-normal" type="username" autocomplete="username" name="username" value="{{ username }}" required />
+		            </div>
+		        </div>
+		        <div class="field">
+		            <div class="control">
+		            	<h5 class="is-size-5 has-text-weight-bold">Email</h5>
+		            	<input class="input is-normal" type="email" autocomplete="email" name="email" value="{{ email }}" />
+		            </div>
+		        </div>
+		        <div class="field">
+		        	<div class="control">
+		        		<h5 class="is-size-5 has-text-weight-bold">Password</h5>
+		        		<input class="input is-normal" type="password" autocomplete="current-password" name="password" />
+		            </div>
+		        </div>
+		        <button class="button is-block is-info is-normal" type="submit">
+		            <strong>Save</strong>
+		        </button>
+			</form>
+		</div>
+	</div>
+{% endblock %}

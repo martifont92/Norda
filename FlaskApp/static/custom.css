@@ -1,0 +1,44 @@
+body{
+	background-color: #fafbfc;
+}
+
+hr{
+  margin-top: 2px !important;
+  margin-bottom: 8px !important;
+}
+
+input {
+  background: var(--shadowLight) !important;
+}
+
+.hero{
+  border-radius: 6px;
+}
+
+.is-family-secondary{
+	font-family: 'DM Serif Display', serif !important;
+}
+
+.navbar{
+	border-bottom: 1px solid #E8E8E8;
+}
+
+.footer{
+	border-top: 1px solid #E8E8E8;
+}
+
+/* SIGNUP/ LOGIN */
+:root {
+  --background: #E4E9F2;
+  --shadowLight: #EFF5FE;
+}
+
+.hero-body {
+  justify-content: center;
+}
+
+.signup-login {
+  border-radius: 25px;
+  padding: 1.5rem;
+  box-shadow: 8px 8px 15px var(--shadowLight), -8px -8px 15px var(--shadowLight);
+}
