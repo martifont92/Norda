@@ -33,7 +33,7 @@
     <div class="container is-max-desktop">
       <div class="navbar-brand">
         <a class="navbar-item" href="{{ '/' }}">
-          <p class="has-text-weight-bold">Nörda</p>
+          <p class="has-text-weight-bold is-size-5">Nörda</p>
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -59,11 +59,11 @@
           <div class="navbar-item">
             {% if not current_user.is_authenticated %}
             <div class="buttons">
-              <a class="button is-info" href="{{ url_for('auth.signup') }}">
-                <strong>Sign up</strong>
-              </a>
               <a class="button is-light" href="{{ url_for('auth.login') }}">
-                Log in
+                Login
+              </a>
+              <a class="button is-info" href="{{ url_for('auth.signup') }}">
+                <strong>SIGN UP</strong>
               </a>
             </div>
             {% endif %}
@@ -82,8 +82,10 @@
       <p class="is-size-6">
         © Copyright 2021 <strong>Norda</strong> / Contact at <a href="mailto:martifont92@gmail.com">martifont92@gmail.com</a>
       </p>
-      <p class="is-size-7 ">
-        <a href="#" alt="Privacy Policy">Privacy Policy</a> / <a href="#" alt="Terms of Service">Terms of Service</a>
+      <p class="is-size-7">
+        <a href="#" alt="Privacy Policy">Privacy Policy</a>
+         / 
+        <a href="#" alt="Terms of Service">Terms of Service</a>
       </p>
     </div>
   </footer>

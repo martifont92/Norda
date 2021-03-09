@@ -3,36 +3,38 @@
 {% block title %}Norda{% endblock %}
 
 {% block content %}
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-  <div class="notification is-danger is-light">
-    <button class="delete"></button>
-    {{ messages[0] }} Go to <a href="{{ url_for('auth.login')}}">Login page</a>
-  </div>
-  {% endif %}
-  {% endwith %}
+  <div class="container is-max-desktop">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="notification is-danger is-light">
+          <button class="delete"></button>
+          {{ messages[0] }} Go to <a href="{{ url_for('auth.login')}}">Login page</a>
+        </div>
+      {% endif %}
+    {% endwith %}
 
-  <section class="hero is-fullheight">
-    <div class="hero-body has-text-centered">
-      <div class="signup-login">
-        <img src="https://logoipsum.com/logo/logo-1.svg" width="325px" />
-        <form action="/signup" method="POST">
-          <div class="field">
-            <div class="control">
-              <input class="input is-medium" type="username" placeholder="Username" autocomplete="username" name="username" required />
+    <section class="hero is-fullheight">
+      <div class="hero-body has-text-centered">
+        <div class="signup-login">
+          <img src="https://logoipsum.com/logo/logo-1.svg" width="325px" />
+          <form action="/signup" method="POST">
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" type="username" placeholder="Username" autocomplete="username" name="username" required />
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <input class="input is-medium" type="password" placeholder="Password" autocomplete="current-password" name="password" required />
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" type="password" placeholder="Password" autocomplete="current-password" name="password" required />
+              </div>
             </div>
-          </div>
-          <br />
-          <button class="button is-block is-fullwidth is-info is-medium" type="submit">
-            <strong>Sign Up</strong>
-          </button>
-        </form>
+            <br />
+            <button class="button is-block is-fullwidth is-info is-medium" type="submit">
+              <strong>SUBMIT</strong>
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 {% endblock %}

@@ -48,4 +48,4 @@ def account_details():
 	db.session.commit()
 	flash('Your details have been saved.', 'is-primary')
 
-	return redirect(url_for('main.account'))
+	return redirect(url_for('main.account', id=current_user.id))

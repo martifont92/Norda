@@ -1,8 +1,11 @@
+import os
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
+from FlaskApp import db, mail
+from flask_mail import Message
 from .models import User
-from FlaskApp import db
+from .forms import ResetPasswordForm
 
 auth = Blueprint('auth', __name__)
 
@@ -43,7 +46,7 @@ def login_post():
 	user = User.query.filter_by(username=username).first()
 
 	if not user or not check_password_hash(user.password, password):
-		flash('Please check your login details and try again.')
+		flash('Please check your login details and try again.', 'is-danger')
 		return redirect(url_for('auth.login'))
 
 	login_user(user)
@@ -55,4 +58,58 @@ def login_post():
 @login_required
 def logout():
 	logout_user()
-	return redirect(url_for('main.index'))
+	return redirect(url_for('auth.login'))
+
+#PASSWORD RESET
+@auth.route('/reset_password')
+def reset_password():
+	return render_template('reset_password.html')
+
+def send_reset_email(user):
+	token = user.get_reset_token()
+	msg = Message()
+	msg.subject = ('Password Reset')
+	msg.sender = ('martifont92@gmail.com')
+	msg.recipients = [user.email]
+	msg.body = f'''
+You may change your password with the link below.
+
+{url_for('auth.reset_token', token=token, _external=True)}
+
+Your password won't change until you access the link above and create a new one.
+
+Thanks!
+'''
+	mail.send(msg)
+
+@auth.route('/reset_password', methods=['POST'])
+def reset_password_post():
+	email = request.form.get('email')
+
+	user = User.query.filter_by(email=email).first()
+	if not user:
+		flash('Sorry, the provided email was not found. Please try again or contact support.', 'is-danger')
+		return redirect(url_for('auth.reset_password'))
+
+	send_reset_email(user)
+	return redirect(url_for('auth.password_reset_sent'))
+
+@auth.route('/reset_token/<token>', methods=['GET', 'POST'])
+def reset_token(token):
+
+	user = User.verify_reset_token(token)
+	if not user:
+		flash('This is an invalid or expired token.', 'is-warning')
+		return redirect(url_for('auth.reset_password'))
+	form = ResetPasswordForm()
+
+	if form.validate_on_submit():
+		user.password = generate_password_hash(form.password.data, method='sha256')
+		db.session.commit()
+		flash('Your password has been updated. You are now able to log in.', 'is-info')
+		return redirect(url_for('auth.login'))
+	return render_template('reset_token.html', form=form)
+
+@auth.route('/password_reset/sent')
+def password_reset_sent():
+	return render_template('password_reset_sent.html')

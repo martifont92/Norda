@@ -3,54 +3,56 @@
 {% block title %}Norda{% endblock %}
 
 {% block content %}
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <div class="notification is-danger is-light">
-        <button class="delete"></button>
-        {{ messages[0] }}</a>
-      </div>
-    {% endif %}
-  {% endwith %}
-  <section class="hero is-fullheight">
-    <div class="hero-body has-text-centered">
-      <div class="signup-login">
-        <img src="https://logoipsum.com/logo/logo-1.svg" width="325px" />
-        <form action="/login" method="POST">
-          <div class="field">
-            <div class="control">
-              <input class="input is-medium" type="username" placeholder="Username" autocomplete="username" name="username" required />
-            </div>
+  <div class="container is-max-desktop">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="notification is-light {{ category }}">
+            <button class="delete"></button>
+            {{ message }}
           </div>
-          <div class="field">
-            <div class="control">
-              <input class="input is-medium" type="password" placeholder="Password" autocomplete="current-password" name="password" required />
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    
+    <section class="hero is-fullheight">
+      <div class="hero-body has-text-centered">
+        <div class="signup-login">
+          <img src="https://logoipsum.com/logo/logo-1.svg" width="325px" />
+          <form action="/login" method="POST">
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" type="username" placeholder="Username" autocomplete="username" name="username" required />
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <label class="checkbox">
-                <input type="checkbox" name="remember"> Remember me</label>
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" type="password" placeholder="Password" autocomplete="current-password" name="password" required />
+              </div>
             </div>
-          </div>
-          <br/>
-          <button class="button is-block is-fullwidth is-info is-medium" type="submit">
-            <strong>Login</strong>
-          </button>
-        </form>
-        <br>
-        <nav class="level">
-          <div class="level-item has-text-centered">
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  <input type="checkbox" name="remember"> Remember me</label>
+              </div>
+            </div>
+            <br/>
+            <button class="button is-block is-fullwidth is-info is-medium" type="submit">
+              <strong>LOGIN</strong>
+            </button>
+          </form>
+          <br>
             <div>
-              <a href="#">Forgot Password?</a>
+              <a href="{{ url_for('auth.reset_password')}}">Forgot your password?</a>
+              |
+              <a href="{{ url_for('auth.reset_password')}}">Forgot your username?</a>
+            </div>
+            <div class="mt-3">
+              Don't have an account?<a href="{{ url_for('auth.signup')}}"> Sign up here.</a>
             </div>
           </div>
-          <div class="level-item has-text-centered">
-            <div>
-              <a href="{{ url_for('auth.signup')}}">Create an Account</a>
-            </div>
-          </div>
-        </nav>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 {% endblock %}

@@ -2,8 +2,11 @@ import os
 from flask import Flask, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_mail import Mail
 
 db = SQLAlchemy()
+mail = Mail()
+login_manager = LoginManager()
 
 def create_app():
 	app = Flask(__name__)
@@ -14,9 +17,11 @@ def create_app():
 	    app.config.from_object("config.DevelopmentConfig")
 
 	db.init_app(app)
-	login_manager =LoginManager()
+
 	login_manager.login_view = 'auth.login'
 	login_manager.init_app(app)
+
+	mail.init_app(app)
 
 	from .models import User
 

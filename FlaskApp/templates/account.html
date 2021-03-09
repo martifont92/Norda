@@ -3,17 +3,18 @@
 {% block title %}Norda{% endblock %}
 
 {% block content %}
-	{% with messages = get_flashed_messages(with_categories=true) %}
-		{% if messages %}
-			{% for category, message in messages %}
-				<div class="notification is-light {{ category }}">
-					<button class="delete"></button>
-					{{ message }}
-				</div>
-			{% endfor %}
-		{% endif %}
-	{% endwith %}
 	<div class="container is-max-desktop">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<div class="notification is-light {{ category }}">
+						<button class="delete"></button>
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		
 		<div class="box mt-4">
 			<legend class="is-size-4">Account Details</legend>
 			<hr>

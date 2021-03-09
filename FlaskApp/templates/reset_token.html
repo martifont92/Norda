@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Norda{% endblock %}
+
+{% block content %}
+<div class="container is-max-desktop">
+	<section class="hero is-fullheight">
+	    <div class="hero-body has-text-centered">
+	      	<div class="signup-login">
+		        <img src="https://logoipsum.com/logo/logo-1.svg" width="325px" />
+		        <form action="" method="POST">
+		        	<div class="field">
+			            <div class="control">
+			            	{{ form.csrf_token }}
+			            	{{ form.password(class="input is-medium") }}
+			            </div>
+			            <br>
+			            {{ form.submit(class="button is-info is-block is-fullwidth has-text-weight-bold is-medium") }}
+			            <!--
+		          		<button class="button is-block is-fullwidth is-info is-medium" type="submit">
+		            		<strong>RESET MY PASSWORD</strong>
+		          		</button>
+		          		-->
+		          	</div>
+		        </form>
+	      	</div>
+	    </div>
+	</section>
+</div>
+{% endblock %}
