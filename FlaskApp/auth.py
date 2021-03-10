@@ -79,6 +79,7 @@ You may change your password with the link below.
 Your password won't change until you access the link above and create a new one.
 
 Thanks!
+norda.com
 '''
 	mail.send(msg)
 
@@ -113,3 +114,41 @@ def reset_token(token):
 @auth.route('/password_reset/sent')
 def password_reset_sent():
 	return render_template('password_reset_sent.html')
+
+#Username recovery
+@auth.route('/recover_username')
+def recover_username():
+	return render_template('recover_username.html')
+
+def send_recovery_email(user):
+	msg = Message()
+	msg.subject = ('Username Recovery')
+	msg.sender = ('martifont92@gmail.com')
+	msg.recipients = [user.email]
+	msg.body = f'''
+As requested, here is your norda.com username:
+
+{ user.username }
+
+If you didn't request your username, don't worry.  You are the only one receiving this information.
+
+Thanks!
+norda.com
+'''
+	mail.send(msg)
+
+@auth.route('/recover_username', methods=['POST'])
+def recover_username_post():
+	email = request.form.get('email')
+
+	user = User.query.filter_by(email=email).first()
+	if not user:
+		flash('Sorry, the provided email was not found. Please try again or contact support.', 'is-danger')
+		return redirect(url_for('auth.recover_username'))
+	send_recovery_email(user)
+	return redirect(url_for('auth.recover_username_sent'))
+
+@auth.route('/recover_username/sent')
+def recover_username_sent():
+	return render_template('recover_username_sent.html')
+
