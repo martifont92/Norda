@@ -43,3 +43,9 @@ input {
   padding: 1.5rem;
   box-shadow: 8px 8px 15px var(--shadowLight), -8px -8px 15px var(--shadowLight);
 }
+
+.admin-login {
+  width: 300px;
+  padding: 1.5rem;
+  box-shadow: 8px 8px 15px var(--shadowLight), -8px -8px 15px var(--shadowLight);
+}

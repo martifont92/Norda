@@ -72,6 +72,8 @@ def send_reset_email(user):
 	msg.sender = ('martifont92@gmail.com')
 	msg.recipients = [user.email]
 	msg.body = f'''
+Hello { user.name },
+
 You may change your password with the link below.
 
 {url_for('auth.reset_token', token=token, _external=True)}
@@ -126,6 +128,8 @@ def send_recovery_email(user):
 	msg.sender = ('martifont92@gmail.com')
 	msg.recipients = [user.email]
 	msg.body = f'''
+Hello { user.name },
+
 As requested, here is your norda.com username:
 
 { user.username }

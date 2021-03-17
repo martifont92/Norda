@@ -17,15 +17,6 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W5LG8D00T6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-W5LG8D00T6');
-    </script>
 </head>
 
 <body>
@@ -33,7 +24,7 @@
     <div class="container is-max-desktop">
       <div class="navbar-brand">
         <a class="navbar-item" href="{{ '/' }}">
-          <p class="has-text-weight-bold is-size-5">Nörda</p>
+          <img src="{{ url_for('static', filename = 'img/logo.png') }}" width="140">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -45,11 +36,10 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item">Products</a>
+          <a class="navbar-item" href="{{ '/' }}">Home</a>
           <a class="navbar-item">Pricing</a>
           <a class="navbar-item">Support</a>
         </div>
-        
 
         <div class="navbar-end">
           {% if current_user.is_authenticated %}
@@ -79,14 +69,7 @@
 
   <footer class="footer mt-6">
     <div class="content has-text-centered">
-      <p class="is-size-6">
-        © Copyright 2021 <strong>Norda</strong> / Contact at <a href="mailto:martifont92@gmail.com">martifont92@gmail.com</a>
-      </p>
-      <p class="is-size-7">
-        <a href="#" alt="Privacy Policy">Privacy Policy</a>
-         / 
-        <a href="#" alt="Terms of Service">Terms of Service</a>
-      </p>
+      <p class="is-size-6">© Copyright 2021 uniq hosting</p>
     </div>
   </footer>
 
