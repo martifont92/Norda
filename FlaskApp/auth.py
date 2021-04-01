@@ -81,7 +81,7 @@ You may change your password with the link below.
 Your password won't change until you access the link above and create a new one.
 
 Thanks!
-norda.com
+finyzz.com
 '''
 	mail.send(msg)
 
@@ -137,7 +137,7 @@ As requested, here is your norda.com username:
 If you didn't request your username, don't worry.  You are the only one receiving this information.
 
 Thanks!
-norda.com
+finyzz.com
 '''
 	mail.send(msg)
 

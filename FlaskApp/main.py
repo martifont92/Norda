@@ -11,6 +11,10 @@ main = Blueprint('main',__name__)
 def index():
 	return render_template('index.html')
 
+@main.route('/pricing')
+def pricing():
+	return render_template('pricing.html')
+
 @main.route('/account/<int:id>')
 @login_required
 def account(id):

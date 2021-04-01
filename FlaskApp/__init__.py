@@ -9,7 +9,7 @@ from flask_admin.contrib.sqla import ModelView
 db = SQLAlchemy()
 mail = Mail()
 login_manager = LoginManager()
-admin = Admin()
+admin = Admin(template_mode='bootstrap2')
 
 def create_app():
 	app = Flask(__name__)

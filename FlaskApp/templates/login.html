@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Norda{% endblock %}
+{% block title %}finyzz{% endblock %}
 
 {% block content %}
-  <div class="container is-max-desktop">
+  <div class="container is-max-widescreen">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
@@ -38,7 +38,7 @@
             </div>
             <br/>
             <button class="button is-block is-fullwidth is-info is-medium" type="submit">
-              <strong>LOGIN</strong>
+              <strong>Iniciar sesión</strong>
             </button>
           </form>
           <br>

@@ -1,5 +1,7 @@
 body{
+  font-size: 1em;
 	background-color: #fafbfc;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 hr{
@@ -12,11 +14,12 @@ input {
 }
 
 .hero{
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
 .is-family-secondary{
-	font-family: 'DM Serif Display', serif !important;
+	font-weight: 600 !important;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .navbar{
@@ -44,8 +47,6 @@ input {
   box-shadow: 8px 8px 15px var(--shadowLight), -8px -8px 15px var(--shadowLight);
 }
 
-.admin-login {
-  width: 300px;
-  padding: 1.5rem;
-  box-shadow: 8px 8px 15px var(--shadowLight), -8px -8px 15px var(--shadowLight);
+.pricing{
+  color: rgb(32, 156, 238, 1);
 }
