@@ -16,7 +16,7 @@
 		{% endwith %}
 		
 		<div class="box mt-4">
-			<legend class="is-size-5">Account Details</legend>
+			<legend class="is-size-5 has-text-weight-bold">Account Details</legend>
 			<hr>
 			<form action="/account" method="POST">
 				<div class="field">
@@ -43,10 +43,35 @@
 		        		<input class="input" type="password" autocomplete="current-password" name="password" required />
 		            </div>
 		        </div>
-		        <button class="button is-block is-info" type="submit">
-		            <strong>SAVE</strong>
-		        </button>
+		        <button class="button is-info has-text-weight-bold" type="submit">SAVE</button>
 			</form>
+		</div>
+
+		<div class="box mt-4">
+			<legend class="is-size-5 has-text-weight-bold">Deletion</legend>
+			<hr>
+			<div class="field is-grouped">
+				<p class="control is-expanded mt-2">
+					Permanently delete your account.
+				</p>
+				<a class="button is-danger has-text-weight-bold" id="button">
+      				DELETE
+    			</a>
+    			<div class="modal" id="page-modal">
+    				<div class="modal-background"></div>
+    				<div class="modal-content">
+    					<div class="box mt-6 has-text-centered">
+	    					<p>
+	    						Are you sure you want to delete you account? This is irreversible!
+	    					</p>
+	    					<a class="button is-danger has-text-weight-bold mt-3" href="{{ url_for('auth.delete_account') }}">
+			      				DELETE
+			    			</a>
+	    				</div>
+					</div>
+					<button class="modal-close is-large" aria-label="close"></button>
+    			</div>
+			</div>
 		</div>
 	</div>
 {% endblock %}

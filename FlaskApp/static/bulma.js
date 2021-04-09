@@ -32,3 +32,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+// Modal
+var button = document.getElementById('button');
+var modal = document.getElementById('page-modal');
+var close = document.getElementsByClassName('modal-close')[0];
+var close_bg = document.getElementsByClassName('modal-background')[0];
+
+button.onclick = function() {
+  modal.style.display = 'block';
+}
+
+close.onclick = function() {
+  modal.style.display = 'none';
+}
+
+close_bg.onclick = function() {
+  modal.style.display = 'none';
+}

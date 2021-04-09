@@ -60,6 +60,16 @@ def logout():
 	logout_user()
 	return redirect(url_for('auth.login'))
 
+#DELETE
+@auth.route('/delete_accunt')
+@login_required
+def delete_account():
+	user_to_delete = User.query.filter_by(id=current_user.id).delete()
+	logout_user()
+	db.session.commit()
+	flash("We are sorry to see you go! Your account and all its data have been deleted.", 'is-primary')
+	return redirect(url_for('main.index'))
+
 #PASSWORD RESET
 @auth.route('/reset_password')
 def reset_password():

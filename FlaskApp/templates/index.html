@@ -3,18 +3,29 @@
 {% block title %}finyzz{% endblock %}
 
 {% block content %}
-<div class="container is-max-widescreen">
-	<section class="hero mt-5 is-info is-bold">
-		<div class="hero-body">
-			<h1 class="title is-size-1 has-text-centered is-family-secondary">
-				Your financial journey starts here.
-			</h1>
-			<h2 class="subtitle has-text-centered has-text-weight-semibold">
-				Life gets easier when you make more money.
-			</h2>
-		</div>
-	</section>
+	<div class="container is-max-widescreen">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<div class="notification is-light {{ category }}">
+						<button class="delete"></button>
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+	
+		<section class="hero mt-5 is-info is-bold">
+			<div class="hero-body">
+				<h1 class="title is-size-1 has-text-centered is-family-secondary">
+					Your financial journey starts here.
+				</h1>
+				<h2 class="subtitle has-text-centered has-text-weight-semibold">
+					Life gets easier when you make more money.
+				</h2>
+			</div>
+		</section>
 
-	<h1 class="is-size-4 mt-4 has-text-weight-bold">Hot Topics</h1>
-</div>
+		<h1 class="is-size-4 mt-4 has-text-weight-bold">Hot Topics</h1>
+	</div>
 {% endblock %}
