@@ -16,18 +16,26 @@
 	{% endwith %}
 	
 	<section class="hero is-fullheight">
-	    <div class="hero-body has-text-centered">
+	    <div class="hero-body">
 	      	<div class="signup-login">
-		        <h1 class="mt-5 mb-6 is-size-3 has-text-weight-bold is-family-secondary">Username Recovery</h1>
-		        <form action="/recover_username" method="POST">
+		        <h1 class="mt-5 mb-6 is-size-3 has-text-weight-bold is-family-secondary has-text-centered">Username Recovery</h1>
+		        <form method="POST" action="">
+		        	{{ form.csrf_token }}
 		        	<div class="field">
 			            <div class="control">
-			            	<input class="input is-medium" type="email" autocomplete="email" name="email" placeholder="email" required />
+			            	{% if form.email.errors %}
+			                  {{ form.email(class="input is-medium is-danger") }}
+			                  <div class="mt-2 is-size-7 has-text-danger">
+			                    {% for error in form.email.errors %}
+			                      <span>{{ error }}</span>
+			                    {% endfor %}
+			                  </div>
+			                {% else %}
+			                  {{ form.email(class_="input is-medium") }}
+			                {% endif %}
 			            </div>
 			            <br>
-		          		<button class="button is-block is-fullwidth is-info is-medium has-text-weight-bold" type="submit">
-		          			EMAIL MY USERNAME
-            			</button>
+		          		{{ form.submit(class_="button is-info is-fullwidth has-text-weight-bold is-medium") }}
 		          	</div>
 		        </form>
 	      	</div>

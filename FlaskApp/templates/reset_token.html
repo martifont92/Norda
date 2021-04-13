@@ -8,14 +8,14 @@
 	    <div class="hero-body has-text-centered">
 	      	<div class="signup-login">
 		        <h1 class="mt-5 mb-6 is-size-2 has-text-weight-bold is-family-secondary">Password resset</h1>
-		        <form action="" method="POST">
+		        <form method="POST" action="">
+		        	{{ form.csrf_token }}
 		        	<div class="field">
 			            <div class="control">
-			            	{{ form.csrf_token }}
-			            	{{ form.password(class="input is-medium") }}
+			            	{{ form.password(class_="input is-medium") }}
 			            </div>
 			            <br>
-			            {{ form.submit(class="button is-info is-block is-fullwidth has-text-weight-bold is-medium") }}
+				       	{{ form.submit(class_="button is-info is-fullwidth has-text-weight-bold is-medium") }}
 		          	</div>
 		        </form>
 	      	</div>

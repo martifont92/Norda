@@ -14,24 +14,41 @@
     {% endwith %}
 
     <section class="hero is-fullheight">
-      <div class="hero-body has-text-centered">
+      <div class="hero-body">
         <div class="signup-login">
-          <h1 class="mt-5 mb-6 is-size-2 has-text-weight-bold is-family-secondary">Sign up</h1>
-          <form action="/signup" method="POST">
+          <h1 class="mt-5 mb-6 is-size-2 has-text-weight-bold is-family-secondary has-text-centered">Sign up</h1>
+          <form method="POST" action="">
+            {{ form.csrf_token }}
             <div class="field">
               <div class="control">
-                <input class="input is-medium" type="username" placeholder="Usuario" autocomplete="username" name="username" required />
+                {% if form.username.errors %}
+                  {{ form.username(class="input is-medium is-danger") }}
+                  <div class="mt-2 is-size-7 has-text-danger">
+                    {% for error in form.username.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.username(class_="input is-medium") }}
+                {% endif %}
               </div>
             </div>
             <div class="field">
               <div class="control">
-                <input class="input is-medium" type="password" placeholder="Contraseña" autocomplete="current-password" name="password" required />
+                {% if form.password.errors %}
+                  {{ form.password(class="input is-medium is-danger") }}
+                  <div class="mt-2 is-size-7 has-text-danger">
+                    {% for error in form.password.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.password(class_="input is-medium") }}
+                {% endif %}
               </div>
             </div>
-            <br />
-            <button class="button is-block is-fullwidth is-info is-medium" type="submit">
-              <strong>SUBMIT</strong>
-            </button>
+            <br/>
+            {{ form.submit(class_="button is-info is-fullwidth has-text-weight-bold is-medium") }}
           </form>
         </div>
       </div>

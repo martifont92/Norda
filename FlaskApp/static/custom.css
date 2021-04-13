@@ -50,3 +50,14 @@ input {
 .pricing{
   color: rgb(32, 156, 238, 1);
 }
+
+.notification.is-info.is-light{
+  background-color: #eff5fb !important;
+  color: #296fa8 !important;
+}
+
+.is-info {
+  background-color: #3298dc !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
