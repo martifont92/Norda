@@ -1,5 +1,6 @@
 body{
   font-size: 1em;
+  color: #525252;
 	background-color: #fafbfc;
   font-family: 'Poppins', sans-serif !important;
 }
@@ -31,11 +32,6 @@ input {
 }
 
 /* SIGNUP/ LOGIN */
-:root {
-  --background: #E4E9F2;
-  --shadowLight: #EFF5FE;
-}
-
 .hero-body {
   justify-content: center;
 }
@@ -45,10 +41,13 @@ input {
   border-radius: 25px;
   padding: 1.5rem;
   box-shadow: 8px 8px 15px var(--shadowLight), -8px -8px 15px var(--shadowLight);
+
+  --background: #E4E9F2;
+  --shadowLight: #EFF5FE;
 }
 
 .pricing{
-  color: rgb(32, 156, 238, 1);
+  color: #00d1b2;
 }
 
 .notification.is-info.is-light{
@@ -56,8 +55,27 @@ input {
   color: #296fa8 !important;
 }
 
-.is-info {
-  background-color: #3298dc !important;
+.button.is-dark {
+  background-color: #363636 !important;
   border-color: transparent !important;
   color: #fff !important;
+}
+
+.button.is-primary {
+  background-color: #00d1b2 !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+
+/* footer */
+.footer {
+  background-color: #fafbfc !important;
+}
+
+.footer a {
+  color: #525252;
+}
+
+.footer a:hover{
+  text-decoration: underline;
 }

@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.widgets import TextArea
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from .models import User
 
@@ -25,7 +26,7 @@ class LoginForm(FlaskForm):
 
 #USERNAME RECOVERY
 class RequestUsernameForm(FlaskForm):
-	email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"placeholder": "Email"})
+	StringField('Username', validators=[DataRequired(), Length(min=3, max=20)], render_kw={"placeholder": "Username"})
 	submit = SubmitField('REMAIL MY USERNAME')
 
 	def validate_email(self, email):
@@ -46,3 +47,10 @@ class RequestResetForm(FlaskForm):
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "new password"})
     submit = SubmitField('RESET MY PASSWORD')
+
+#CONTACT
+class ContactForm(FlaskForm):
+	name = StringField('Name', validators=[DataRequired(), Length(min=3, max=20)])
+	email = StringField('Email', validators=[DataRequired(), Email()])
+	message = StringField('Name', validators=[DataRequired()], widget=TextArea())
+	submit = SubmitField('SUBMIT')

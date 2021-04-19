@@ -2,8 +2,10 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_required, current_user
 from .models import User
-from FlaskApp import db
+from .forms import ContactForm
+from FlaskApp import db, mail
 import datetime
+from flask_mail import Message
 
 main = Blueprint('main',__name__)
 
@@ -54,3 +56,29 @@ def account_details():
 	flash('Your details have been saved.', 'is-primary')
 
 	return redirect(url_for('main.account', id = current_user.id))
+
+#CONTACT
+def send_message(message):
+	msg = Message(message.get('name'),
+		sender = message.get('email'),
+		recipients = ['martifont92@gmail.com'],
+	)
+	msg.body = f'''
+Email: { message.get('email') }
+Name: { message.get('name') }
+Message: { message.get('message') }
+'''
+
+	mail.send(msg)
+
+@main.route("/contact", methods=['GET', 'POST'])
+def contact():
+	form = ContactForm()
+
+	if form.validate_on_submit():
+		send_message(request.form)
+		flash("Your message has been sent! We will contact you as soon as possible!", 'is-primary')
+		return redirect(url_for('main.contact'))
+
+	return render_template('contact.html', form=form)
+
